@@ -1,0 +1,14 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; 
+}
+
+
+.main{
+  background: linear-gradient(to right, #e0f2fe, #bfdbfe, #93c5fd);
+  height: 100vh;
+}
+
+
+

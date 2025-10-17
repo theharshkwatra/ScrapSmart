@@ -1,0 +1,15 @@
+.start{
+  display: flex;
+  gap: 20px;
+  position: relative;
+  top: 95px;
+  left: 30px 
+}
+
+.start-btn{
+  font-size: 18px;
+  height: 70px;
+  width: 11vw;
+  padding: 10px 16px;
+}
+
