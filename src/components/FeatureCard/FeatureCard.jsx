@@ -4,13 +4,9 @@ import './FeatureCard.css'
 const FeatureCard = (props) => {
   return (
     <div className="featureCard">
-      <div className="content">
-        <div className="icon" style={{ color: color }}>
-          {icon}
-        </div>
-        <h2 className="num">{num}</h2>
-        <p className="desc">{desc}</p>
-      </div> 
+      <div className="icon">{props.icon}</div>
+      <div className="num">{props.num}</div>
+      <div className="desc">{props.desc}</div>
     </div>
   )
 }
