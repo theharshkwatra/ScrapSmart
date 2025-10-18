@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, #2563eb, #06b6d4);
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
 }
 
 .navbar-logo {
@@ -27,7 +27,7 @@
 .navbar-links{
   display: flex;
   gap: 15px;
-  font-family: sans-serif;
+  font-family: var(--font-main);
   font-size: 16px;
   align-items: center;
   flex-wrap: wrap;

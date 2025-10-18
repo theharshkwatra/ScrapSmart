@@ -13,7 +13,7 @@
   text-align: center;
   padding: 7px 15px;
   border-radius: 20px;
-  background: linear-gradient(to right, #2563eb, #06b6d4);
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
   width: fit-content;
   box-shadow: 0.5px 0.25px 10px #6ca5d7;
   height: 22px;
@@ -22,14 +22,14 @@
 .cash{
   font-family: 'Dancing Script', sans-serif;
   font-weight: 600;
-  color: blue;
+  color: var(--primary-color);
   font-size: 70px;
 }
 
 .heading{
   position: relative;
   top: 8px;
-  font-family: sans-serif;
+  font-family: var(--font-main);
   font-size: 65px;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .content{
-    font-family: sans-serif;
+    font-family: var(--font-main);
     font-size: 20px;
     color: rgb(74, 85, 101);
     position: relative;

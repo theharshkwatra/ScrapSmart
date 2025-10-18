@@ -8,18 +8,18 @@
 }
 
 .icon{
-    color: rgb(0, 102, 255);
+    color: var(--primary-color);
     font-size: 28px;
 }
 
 .num{
-    color: rgb(16, 24, 40);
-    font-family: sans-serif;
+    color: var(--heading-color);
+    font-family: var(--font-main);
     font-size: 30px;
 }
 
 .desc{
     color: rgb(74, 85, 101);
     font-size: 14px;
-    font-family: sans-serif;
+    font-family: var(--font-main);
 }

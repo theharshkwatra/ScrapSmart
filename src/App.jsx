@@ -26,8 +26,8 @@ function App() {
         </div>
       </section>
 
-      <section>
-        
+      <section className='section2'>
+                
       </section>
 
 
