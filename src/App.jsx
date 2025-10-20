@@ -4,8 +4,10 @@ import Navbar from './components/Navbar/Navbar'
 import Button from './components/Button/Button'
 import HeroSection from './components/HeroSection/HeroSection'
 import { FaRecycle, FaDollarSign } from 'react-icons/fa';
-import { FiClock } from 'react-icons/fi';
+import { FiClock, FiZap, FiShield, FiTrendingUp } from 'react-icons/fi';
+import ServiceCard from './components/ServiceCard/ServiceCard'
 import FeatureCard from './components/FeatureCard/FeatureCard';
+import Footer from './components/Footer/Footer'
 
 function App() {
 
@@ -26,10 +28,22 @@ function App() {
         </div>
       </section>
 
-      <section className='section2'>
-                
+      <section className='home-services'>
+        <div className='service-content'>
+          <h2> Why Choose <span className='imp'> ScrapSmart </span></h2>
+          <p>We're revolutionizing the scrap industry with cutting-edge technology and unmatched service</p>
+        </div>
+        <div  className='serviceCard'>
+          <ServiceCard serviceIcon={<FiZap />} serviceTitle="Instant Quotes" serviceContent="Get real-time pricing for your scrap materials with our AI-powered valuation system."/>
+          <ServiceCard serviceIcon={<FiShield />} serviceTitle="Secure Transactions" serviceContent="Bank-grade security ensures your data and payments are always protected."/>
+          <ServiceCard serviceIcon={<FiTrendingUp />} serviceTitle="Market Insights
+" serviceContent="Stay ahead with live market rates and predictive analytics for scrap materials."/>
+        </div>
       </section>
 
+      <section className='footer-section'>
+        <Footer />
+      </section>
 
     </>
   )

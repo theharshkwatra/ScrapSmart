@@ -2,14 +2,24 @@
   --primary-color: rgb(0, 102, 255);
   --secondary-color: #06b6d4;
   --font-main: sans-serif;
-  --text-color: #333;
+  --text-color: rgb(74, 85, 101);
   --heading-color: rgb(10, 22, 40);
 }
 
 html, body {
+  /* Make both elements fill the viewport */
+  height: 100%; 
   margin: 0;
   padding: 0;
-  overflow-x: hidden; 
+}
+
+html {
+  overflow: hidden; 
+}
+
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 

@@ -1,0 +1,48 @@
+.service-card{
+    position: relative;
+    top: 90px;
+    height: 170px;
+    width: 24vw;
+    background: linear-gradient(to bottom right, #f9fafb, rgba(239, 246, 255, 0.5));
+    padding: 32px 32px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    transform: translateY(0);quotes: 1px;
+    overflow: hidden;
+}
+
+.icon-container{
+    background-color: rgba(59, 130, 246, 0.1);
+    border-radius: 12px;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.service-icon{
+    color: var(--primary-color);
+    font-size: 40px;
+    position: relative;
+    top: 4px;
+}
+
+.service-title{
+    font-family: var(--font-main);
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.service-desc{
+    font-family: var(--font-main);
+    color: var(--text-color);
+}
+
+.service-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  transform: translateY(-8px);
+  transition: all 0.3s ease;
+}

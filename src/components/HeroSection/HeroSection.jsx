@@ -11,7 +11,7 @@ const HeroSection = () => {
             </div>
             <div className='hero-content'>
                 <h1 className='heading'>
-                    Turn Your Scrap Into <span className='cash'>Cash</span>
+                    Turn Your Scrap Into <span className='imp'>Cash</span>
                 </h1>
                 <p className='content'>
                     The most advanced platform for buying and selling scrap materials. Get instant quotes, schedule pickups, and maximize your returns with ScrapSmart.

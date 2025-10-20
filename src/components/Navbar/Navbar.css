@@ -7,23 +7,6 @@
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
 }
 
-.navbar-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;           
-}
-
-.logo-icon {
-  height: 40px; 
-}
-
-.logo-text {
-  height: 40px; 
-  position: relative;
-  top: 5px;
-  left: 12px;
-}
-
 .navbar-links{
   display: flex;
   gap: 15px;
