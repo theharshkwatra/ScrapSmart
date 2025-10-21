@@ -3,17 +3,19 @@ import './App.css'
 import Navbar from './components/Navbar/Navbar'
 import Button from './components/Button/Button'
 import HeroSection from './components/HeroSection/HeroSection'
-import { FaRecycle, FaDollarSign } from 'react-icons/fa';
-import { FiClock, FiZap, FiShield, FiTrendingUp } from 'react-icons/fi';
+import { FaRecycle, FaDollarSign } from 'react-icons/fa'
+import { FiClock, FiZap, FiShield, FiTrendingUp } from 'react-icons/fi'
 import ServiceCard from './components/ServiceCard/ServiceCard'
-import FeatureCard from './components/FeatureCard/FeatureCard';
+import FeatureCard from './components/FeatureCard/FeatureCard'
 import Footer from './components/Footer/Footer'
 
 function App() {
 
   return (
     <>
-      <Navbar />
+      <div>
+        <Navbar />
+      </div>
       <section className='main'>
         <HeroSection />
         <div className='start'>
@@ -33,11 +35,11 @@ function App() {
           <h2> Why Choose <span className='imp'> ScrapSmart </span></h2>
           <p>We're revolutionizing the scrap industry with cutting-edge technology and unmatched service</p>
         </div>
-        <div  className='serviceCard'>
-          <ServiceCard serviceIcon={<FiZap />} serviceTitle="Instant Quotes" serviceContent="Get real-time pricing for your scrap materials with our AI-powered valuation system."/>
-          <ServiceCard serviceIcon={<FiShield />} serviceTitle="Secure Transactions" serviceContent="Bank-grade security ensures your data and payments are always protected."/>
+        <div className='serviceCard'>
+          <ServiceCard serviceIcon={<FiZap />} serviceTitle="Instant Quotes" serviceContent="Get real-time pricing for your scrap materials with our AI-powered valuation system." />
+          <ServiceCard serviceIcon={<FiShield />} serviceTitle="Secure Transactions" serviceContent="Bank-grade security ensures your data and payments are always protected." />
           <ServiceCard serviceIcon={<FiTrendingUp />} serviceTitle="Market Insights
-" serviceContent="Stay ahead with live market rates and predictive analytics for scrap materials."/>
+" serviceContent="Stay ahead with live market rates and predictive analytics for scrap materials." />
         </div>
       </section>
 
