@@ -1,0 +1,16 @@
+.services-box{
+    font-family: var(--font-main);
+    text-align: center;
+    font-size: 35px;
+    width: 50vw;
+    margin: 0 auto;
+}
+
+.services-heaidng{
+    color: var(--heading-color);
+}
+
+.services-content{
+    color: var(--text-color);
+    font-size: 20px;
+}

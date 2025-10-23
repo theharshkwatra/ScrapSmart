@@ -26,13 +26,6 @@
   width: 45vw;
 }
 
-.imp{
-  font-family: 'Dancing Script', sans-serif;
-  font-weight: 600;
-  color: var(--primary-color);
-  font-size: 70px;
-}
-
 .service-content{
   position: relative;
   top: 40px;
