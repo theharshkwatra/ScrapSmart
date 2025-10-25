@@ -11,9 +11,9 @@ const ServiceTile = (props) => {
             <p className='content'> {props.content} </p>
 
             <ul className='service-list'>
-                <li> {props.item1} </li>
-                <li> {props.item2} </li>
-                <li> {props.item3} </li>
+                {props.points.map((point, index) => (
+                    <li key={index}>{point}</li>
+                ))}
             </ul>
         </div>
     )

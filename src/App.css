@@ -6,11 +6,38 @@
     margin: 0 auto;
 }
 
-.services-heaidng{
+.services-heading{
     color: var(--heading-color);
 }
 
 .services-content{
     color: var(--text-color);
-    font-size: 20px;
+    font-size: 20px;    
+}
+
+.services-grid{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 90vw;
+    margin: 0 auto;
+    gap: 40px 40px;
+}
+
+.materials-section{
+    background-color: rgba(217, 230, 248, 0.5);
+    position: relative;
+    top: 200px;
+    /* height: 500px; */
+}
+
+.materials-box{
+    margin: 0 auto;
+}
+
+.materials-list{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 90vw;
+    margin: 0 auto;
+    gap: 40px 40px;
 }

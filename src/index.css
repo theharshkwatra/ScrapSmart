@@ -7,7 +7,6 @@
 }
 
 html, body {
-  /* Make both elements fill the viewport */
   height: 100%; 
   margin: 0;
   padding: 0;
