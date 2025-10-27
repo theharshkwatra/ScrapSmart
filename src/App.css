@@ -8,6 +8,7 @@
 
 .services-heading{
     color: var(--heading-color);
+    font-weight: 500;
 }
 
 .services-content{
@@ -24,14 +25,10 @@
 }
 
 .materials-section{
-    background-color: rgba(217, 230, 248, 0.5);
+    background: rgb(249, 250, 253);
     position: relative;
-    top: 200px;
-    /* height: 500px; */
-}
-
-.materials-box{
-    margin: 0 auto;
+    top: 160px;
+    height: 85vh;
 }
 
 .materials-list{
@@ -40,4 +37,25 @@
     width: 90vw;
     margin: 0 auto;
     gap: 40px 40px;
+}
+
+.materials-box{
+    position: relative;
+    top: 80px;
+}
+
+.materials-content{
+    text-align: center;
+    font-family: var(--font-main);
+}
+
+.materials-heading{
+    color: var(--heading-color);
+    font-size: 48px;
+    font-weight: 500;
+}
+
+.materials-desc{
+    color: var(--text-color);
+    font-size: 20px;
 }

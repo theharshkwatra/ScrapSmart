@@ -44,18 +44,28 @@ function App() {
 
         <section className='materials-section'>
           <div className='materials-box'>
-            <h2>Materials We Accept</h2>
-            <p>We handle a wide range of recyclable materials with expertise and care</p>
-          </div>
+            <div className='materials-content'>
+              <h2 className='materials-heading'>Materials We Accept</h2>
+              <p className='materials-desc'>We handle a wide range of recyclable materials with expertise and care</p>
+            </div>
 
-          <div className='materials-list'>
-            {materialsData.map((material) => (
-              <MaterialCard 
-              key={material.title}
-              title={material.title}
-              desc={material.desc}
-              />
-            ))}
+            <div className='materials-list'>
+              {materialsData.map((material) => (
+                <MaterialCard
+                  key={material.title}
+                  title={material.title}
+                  desc={material.desc}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className='unique-service'>
+          <div className='unique-service-content'>
+            <img src="" alt="scrap" />
+            <h2>Why Our Services Stand Out</h2>
+            
           </div>
         </section>
       </div>
