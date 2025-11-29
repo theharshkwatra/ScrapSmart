@@ -1,6 +1,6 @@
 import React from 'react'
 import './HomePage.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import HeroSection from '../../components/HeroSection/HeroSection'
 import { FaRecycle, FaDollarSign } from 'react-icons/fa'
@@ -10,13 +10,24 @@ import FeatureCard from '../../components/FeatureCard/FeatureCard'
 import Footer from '../../components/Footer/Footer'
 
 function HomePage() {
+  const navigate = useNavigate();
+
+  const handleGetStartedClick = () => {
+    navigate('/services');
+  };
 
   return (
     <>
       <section className='main'>
         <HeroSection />
         <div className='start'>
-          <Link to="/contact"><Button label={"Get Started →"} color="rgb(0, 102, 255)" text="white" className="start-btn" /></Link>
+          <Button 
+            label={"Get Started →"} 
+            color="rgb(0, 102, 255)" 
+            text="white" 
+            className="start-btn"
+            onClick={handleGetStartedClick}
+          />
           <Link to="/how-it-works"><Button label={"How It Works"} color="white" text="rgb(10, 22, 40)" className="start-btn" /></Link>
         </div>
 
@@ -44,7 +55,13 @@ function HomePage() {
         <div className="cta-inner">
           <h2>Ready to Get Started?</h2>
           <p>Join thousands of businesses and individuals who trust ScrapSmart for their scrap management needs.</p>
-          <Link to="/contact"><Button label={"Request a Quote"} color="white" text="rgb(0,102,255)" className="cta-btn" /></Link>
+          <Button 
+            label={"Request a Quote"} 
+            color="white" 
+            text="rgb(0,102,255)" 
+            className="cta-btn"
+            onClick={handleGetStartedClick}
+          />
         </div>
       </section>
 

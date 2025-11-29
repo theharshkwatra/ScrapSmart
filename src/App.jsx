@@ -3,7 +3,6 @@ import HomePage from './Pages/HomePage/HomePage';
 import Services from './Pages/Services/Services';
 import About from './Pages/About/About';
 import HowItWorks from './Pages/HowItWorks/HowItWorks';
-import Contact from './Pages/Contact/Contact';
 import './App.css'
 
 import Navbar from './components/Navbar/Navbar';
@@ -26,7 +25,6 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
     </BrowserRouter>

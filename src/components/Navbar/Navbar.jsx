@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import './Navbar.css'
 import Button from '../Button/Button'
 import Logo from '../Logo/Logo'
@@ -10,9 +10,7 @@ const Navbar = () => {
     { label: 'Home', to: '/' },
     { label: 'About', to: '/about' },
     { label: 'Services', to: '/services' },
-    { label: 'How It Works', to: '/how-it-works' },
-    { label: 'Contact', to: '/contact' },
-    { label: 'Get Started', to: '/contact' }
+    { label: 'How It Works', to: '/how-it-works' }
   ];
 
   return (
@@ -26,12 +24,17 @@ const Navbar = () => {
                 <Button
                   label={item.label}
                   active={isActive}
-                  color={item.label === 'Get Started' ? 'white' : undefined}
-                  text={item.label === 'Get Started' ? 'rgba(0, 102, 255, 1)' : undefined}
                 />
               )}
             </NavLink>
           ))}
+          <Link to="/services" className="navlink get-started-link">
+            <Button
+              label="Get Started"
+              color="white"
+              text="rgba(0, 102, 255, 1)"
+            />
+          </Link>
         </div>
       </nav>
     </div>
