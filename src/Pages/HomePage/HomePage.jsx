@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import React from 'react'
 import './HomePage.css'
-import Navbar from '../../components/Navbar/Navbar'
+import { Link } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import HeroSection from '../../components/HeroSection/HeroSection'
 import { FaRecycle, FaDollarSign } from 'react-icons/fa'
@@ -13,14 +13,11 @@ function HomePage() {
 
   return (
     <>
-      <div>
-        <Navbar />
-      </div>
       <section className='main'>
         <HeroSection />
         <div className='start'>
-          <Button label={"Get Started →"} color="rgb(0, 102, 255)" text="white" className="start-btn" />
-          <Button label={"How It Works"} color="white" text="rgb(10, 22, 40)" className="start-btn" />
+          <Link to="/contact"><Button label={"Get Started →"} color="rgb(0, 102, 255)" text="white" className="start-btn" /></Link>
+          <Link to="/how-it-works"><Button label={"How It Works"} color="white" text="rgb(10, 22, 40)" className="start-btn" /></Link>
         </div>
 
         <div className="featureSection">
@@ -38,15 +35,22 @@ function HomePage() {
         <div className='serviceCard'>
           <ServiceCard serviceIcon={<FiZap />} serviceTitle="Instant Quotes" serviceContent="Get real-time pricing for your scrap materials with our AI-powered valuation system." />
           <ServiceCard serviceIcon={<FiShield />} serviceTitle="Secure Transactions" serviceContent="Bank-grade security ensures your data and payments are always protected." />
-          <ServiceCard serviceIcon={<FiTrendingUp />} serviceTitle="Market Insights
-" serviceContent="Stay ahead with live market rates and predictive analytics for scrap materials." />
+          <ServiceCard serviceIcon={<FiTrendingUp />} serviceTitle="Market Insights" serviceContent="Stay ahead with live market rates and predictive analytics for scrap materials." />
+        </div>
+      </section>
+
+      {/* CTA section inserted after Why Choose ScrapSmart */}
+      <section className="cta-section">
+        <div className="cta-inner">
+          <h2>Ready to Get Started?</h2>
+          <p>Join thousands of businesses and individuals who trust ScrapSmart for their scrap management needs.</p>
+          <Link to="/contact"><Button label={"Request a Quote"} color="white" text="rgb(0,102,255)" className="cta-btn" /></Link>
         </div>
       </section>
 
       <section className='footer-section'>
         <Footer />
       </section>
-
     </>
   )
 }

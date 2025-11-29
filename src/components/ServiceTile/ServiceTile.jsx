@@ -8,7 +8,7 @@ const ServiceTile = (props) => {
                 <div className='tile-icon'> {props.icon} </div>
             </div>
             <h3 className='title'> {props.title} </h3>
-            <p className='content'> {props.content} </p>
+            <p className='content'> {props.description} </p>
 
             <ul className='service-list'>
                 {props.points.map((point, index) => (

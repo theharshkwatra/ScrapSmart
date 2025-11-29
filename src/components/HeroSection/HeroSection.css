@@ -2,9 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
 .hero{
-  position: relative;
-  top: 75px;
-  left: 30px;
+  padding: 28px 30px 0;
 }
 
 .hero-btn{
@@ -19,18 +17,11 @@
   height: 22px;
 }
 
-.imp{
-  font-family: 'Dancing Script', sans-serif;
-  font-weight: 600;
-  color: var(--primary-color);
-  font-size: 70px;
-}
 
 .heading{
-  position: relative;
-  top: 8px;
   font-family: var(--font-main);
   font-size: 65px;
+  margin: 8px 0 12px;
 }
 
 .hero-content{

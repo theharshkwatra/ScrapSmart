@@ -1,14 +1,15 @@
 .service-card{
-    position: relative;
-    top: 90px;
     height: 170px;
     width: 24vw;
     background: linear-gradient(to bottom right, #f9fafb, rgba(239, 246, 255, 0.5));
     padding: 32px 32px;
     border-radius: 16px;
     transition: all 0.3s ease;
-    transform: translateY(0);quotes: 1px;
+    transform: translateY(0);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .icon-container{
@@ -33,11 +34,16 @@
     font-family: var(--font-main);
     font-size: 26px;
     font-weight: 500;
+    margin: 0;
+    color: var(--heading-color);
 }
 
 .service-desc{
     font-family: var(--font-main);
     color: var(--text-color);
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
 }
 
 .service-card:hover {

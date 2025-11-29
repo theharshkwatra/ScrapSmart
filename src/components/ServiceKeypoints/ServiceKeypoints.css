@@ -1,0 +1,38 @@
+.keypoints {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px; 
+  margin-bottom: 24px;
+}
+
+.icon-box {
+  width: 56px;
+  height: 56px;
+  background: #E8F1FF; 
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keypoint-icon svg {
+  width: 26px;      
+  height: 26px;
+  color: #3B82F6;   
+}
+
+.content h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 600;          
+  line-height: 1.2;
+  color: #0F172A;    
+}       
+
+.content p {
+  margin: 4px 0 0 0;
+  font-size: 15px;
+  line-height: 1.4;         
+  color: #475569;          
+}

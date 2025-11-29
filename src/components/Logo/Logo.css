@@ -5,12 +5,12 @@
 }
 
 .logo-icon {
-  height: 40px; 
+  height: 34px; 
 }
 
 .logo-text {
-  height: 40px; 
+  height: 30px; 
   position: relative;
-  top: 5px;
-  left: 12px;
+  top: 2px;
+  left: 10px;
 }
