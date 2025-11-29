@@ -15,7 +15,7 @@
 }
 
 .icon-box{
-    background-color: rgb(0, 102, 255);
+    background-color: var(--primary-color) !important;
     border-radius: 12px;
     height: 64px;
     width: 64px;
