@@ -1,10 +1,37 @@
 import React from 'react';
 import './HowItWorks.css';
-import { FaCamera, FaTruck, FaMoneyBillWave } from 'react-icons/fa';
+import { FaCamera, FaTruck, FaMoneyBillWave, FaCheckCircle } from 'react-icons/fa';
 import { FiFileText } from 'react-icons/fi';
 import Footer from '../../components/Footer/Footer';
+import Button from '../../components/Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 function HowItWorks() {
+  const navigate = useNavigate();
+
+  const handleGetStartedClick = () => {
+    navigate('/services');
+  };
+
+  const customerFeatures = [
+    {
+      title: 'No Hidden Fees',
+      description: 'What you see is what you get. Transparent pricing with no surprises.'
+    },
+    {
+      title: 'Same Day Service',
+      description: 'Quick turnaround from quote to payment, often within 24 hours.'
+    },
+    {
+      title: 'Eco-Friendly',
+      description: 'All materials are responsibly recycled with minimal environmental impact.'
+    },
+    {
+      title: 'Professional Team',
+      description: 'Trained experts handle your materials with care and expertise.'
+    }
+  ];
+
   const steps = [
     {
       number: '01',
@@ -75,6 +102,57 @@ function HowItWorks() {
             </div>
           </div>
         ))}
+      </section>
+
+      <section className="why-customers-love">
+        <div className="why-customers-content">
+          <h2 className="why-customers-title">Why Customers Love Us</h2>
+          <p className="why-customers-subtitle">The ScrapSmart advantage goes beyond just buying and selling scrap</p>
+          <div className="customer-cards-grid">
+            {customerFeatures.map((feature, index) => (
+              <div key={index} className="customer-card">
+                <div className="customer-card-icon">
+                  <FaCheckCircle />
+                </div>
+                <h3 className="customer-card-title">{feature.title}</h3>
+                <p className="customer-card-desc">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="start-earning-section">
+        <div className="start-earning-container">
+          <div className="start-earning-content">
+            <h2 className="start-earning-title">Start Earning Today</h2>
+            <p className="start-earning-text">Join thousands of satisfied customers who have discovered the smartest way to handle their scrap materials.</p>
+            <ul className="start-earning-points">
+              <li>
+                <FaCheckCircle className="check-icon" />
+                <span>Free account setup</span>
+              </li>
+              <li>
+                <FaCheckCircle className="check-icon" />
+                <span>No minimum quantities</span>
+              </li>
+              <li>
+                <FaCheckCircle className="check-icon" />
+                <span>24/7 customer support</span>
+              </li>
+            </ul>
+            <Button 
+              label="Get Started Now →" 
+              color="rgb(0, 102, 255)" 
+              text="white" 
+              className="start-earning-btn"
+              onClick={handleGetStartedClick}
+            />
+          </div>
+          <div className="start-earning-image">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop" alt="Urban landscape with highways" />
+          </div>
+        </div>
       </section>
 
       <section className="footer-section">
