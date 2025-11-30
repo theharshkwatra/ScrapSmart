@@ -1,10 +1,14 @@
-.navbar{
+.navbar {
   height: 72px; /* fixed header height to match design proportions */
   padding: 0 28px; /* horizontal padding only */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   position: fixed;
   top: 0;
   left: 0;
@@ -14,10 +18,10 @@
   box-sizing: border-box;
   overflow: hidden;
   z-index: 1200;
-  box-shadow: 0 3px 18px rgba(0,0,0,0.06);
+  box-shadow: 0 3px 18px rgba(0, 0, 0, 0.06);
 }
 
-.navbar-links{
+.navbar-links {
   display: flex;
   gap: 16px;
   font-family: var(--font-main);
@@ -37,12 +41,12 @@
 }
 
 .navlink.active .btn,
-.navlink .btn[aria-pressed='true'] {
-  background-color: rgba(255,255,255,0.12) !important;
+.navlink .btn[aria-pressed="true"] {
+  background-color: rgba(255, 255, 255, 0.12) !important;
   border-radius: 12px;
   padding: 8px 14px;
-  box-shadow: 0 6px 18px rgba(10,22,40,0.06);
-  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 6px 18px rgba(10, 22, 40, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: #fff !important;
 }
 
@@ -57,6 +61,32 @@
 .get-started-link .btn {
   background-color: white !important;
   color: rgba(0, 102, 255, 1) !important;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-main);
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.logout-btn svg {
+  font-size: 16px;
 }
 
 @media (max-width: 600px) {

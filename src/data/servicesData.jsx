@@ -1,6 +1,8 @@
 import { FaBalanceScale, FaTruck, FaCube, FaShieldAlt } from 'react-icons/fa';
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { BsGraphUp } from "react-icons/bs";
+import React from "react";
+
 
 
 const servicesData = [

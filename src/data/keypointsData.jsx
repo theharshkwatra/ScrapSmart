@@ -1,4 +1,6 @@
 import { FiClock, FiShield, FiTrendingUp } from 'react-icons/fi'
+import React from "react";
+
 
 
 const keypointsData = [
