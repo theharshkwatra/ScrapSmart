@@ -1,6 +1,6 @@
 import React from 'react'
 import './HomePage.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import HeroSection from '../../components/HeroSection/HeroSection'
 import { FaRecycle, FaDollarSign } from 'react-icons/fa'
@@ -28,7 +28,13 @@ function HomePage() {
             className="start-btn"
             onClick={handleGetStartedClick}
           />
-          <Link to="/how-it-works"><Button label={"How It Works"} color="white" text="rgb(10, 22, 40)" className="start-btn" /></Link>
+          <Button
+            label={"How It Works"}
+            color="white"
+            text="rgb(10, 22, 40)"
+            className="start-btn"
+            onClick={() => navigate('/how-it-works')}
+          />
         </div>
 
         <div className="featureSection">

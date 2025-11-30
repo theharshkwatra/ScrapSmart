@@ -35,20 +35,13 @@ function HowItWorks() {
   const steps = [
     {
       number: '01',
-      title: 'Upload Photos',
-      description: 'Upload photos of your scrap materials on our website. Include different angles for accurate assessment.',
-      points: ['Multiple angle photos', 'Quantity estimation'],
-      icon: <FaCamera />
-    },
-    {
-      number: '02',
       title: 'Schedule Pickup',
       description: 'Choose a convenient time for pickup. Our logistics team will come to your location with all necessary equipment.',
       points: ['Flexible scheduling','Professional handling'],
       icon: <FaTruck />
     },
     {
-      number: '03',
+      number: '02',
       title: 'Get Paid',
       description: 'After verification and weighing, receive instant payment through your preferred method. Simple, fast, and secure.',
       points: ['Multiple payment options', 'Instant settlement'],
