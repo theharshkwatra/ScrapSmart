@@ -1,7 +1,7 @@
 .start{
   display: flex;
   gap: 20px;
-  margin: 20px 0 0 30px;
+  margin: 20px 0 0 60px;
 }
 
 .btn.start-btn {
@@ -22,7 +22,7 @@
 .featureSection{
   display: flex;
   width: 45vw;
-  margin: 40px 0 0 30px;
+  margin: 40px 0 0 45px;
   gap: 40px;
 }
 
