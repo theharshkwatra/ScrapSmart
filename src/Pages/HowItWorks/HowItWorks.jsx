@@ -36,29 +36,22 @@ function HowItWorks() {
     {
       number: '01',
       title: 'Upload Photos',
-      description: 'Take photos of your scrap materials using our mobile app or website. Include different angles for accurate assessment.',
-      points: ['Multiple angle photos', 'Material categorization', 'Quantity estimation'],
+      description: 'Upload photos of your scrap materials on our website. Include different angles for accurate assessment.',
+      points: ['Multiple angle photos', 'Quantity estimation'],
       icon: <FaCamera />
     },
     {
       number: '02',
-      title: 'Get Instant Quote',
-      description: 'Our AI analyzes your materials and provides a real-time quote based on current market rates and material quality.',
-      points: ['AI-powered valuation', 'Market rate matching', 'Transparent pricing'],
-      icon: <FiFileText />
-    },
-    {
-      number: '03',
       title: 'Schedule Pickup',
       description: 'Choose a convenient time for pickup. Our logistics team will come to your location with all necessary equipment.',
-      points: ['Flexible scheduling', 'GPS tracked vehicles', 'Professional handling'],
+      points: ['Flexible scheduling','Professional handling'],
       icon: <FaTruck />
     },
     {
-      number: '04',
+      number: '03',
       title: 'Get Paid',
       description: 'After verification and weighing, receive instant payment through your preferred method. Simple, fast, and secure.',
-      points: ['Multiple payment options', 'Instant settlement', 'Digital receipts'],
+      points: ['Multiple payment options', 'Instant settlement'],
       icon: <FaMoneyBillWave />
     }
   ];
