@@ -1,6 +1,6 @@
 .howitworks-hero {
   background: white;
-	padding: 60px 0 80px 0;
+  padding: 110px 0 60px 0;
 }
 
 .howitworks-header {
@@ -12,8 +12,8 @@
 
 .howitworks-title {
   font-family: var(--font-main);
-  font-size: 56px;
-  font-weight: 600;
+  font-size: 64px;
+  font-weight: 500;
   color: var(--heading-color);
   margin: 0 0 16px 0;
 }
@@ -23,10 +23,8 @@
   font-size: 20px;
   color: var(--text-color);
   line-height: 1.6;
-  margin: 0;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .howitworks-steps {
@@ -40,35 +38,25 @@
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 60px;
-  gap: 60px;
+  padding: 40px 20px;
+  gap: 40px;
 }
 
 .step-reverse {
   flex-direction: row-reverse;
 }
 
-.step-reverse .step-content {
+/* .step-reverse .step-content {
   text-align: right;
-}
+} */
 
-.step-reverse .step-header {
+/* .step-reverse .step-header {
   flex-direction: row-reverse;
-}
-
-.step-reverse .step-points li {
-  padding-left: 0;
-  padding-right: 24px;
-}
-
-.step-reverse .step-points li::before {
-  left: auto;
-  right: 0;
-}
+} */
 
 .step-content {
   flex: 1;
-  max-width: 500px;
+  max-width: 550px;
 }
 
 .step-badge {
@@ -98,16 +86,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
   box-shadow: 0 2px 8px rgba(0, 102, 255, 0.2);
 }
 
 .step-icon {
   color: white;
   font-size: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .step-title {
@@ -120,10 +104,10 @@
 
 .step-description {
   font-family: var(--font-main);
-  font-size: 18px;
+  font-size: 20px;
   color: var(--text-color);
   line-height: 1.6;
-  margin: 0 0 20px 0;
+  margin-bottom: 20px;
 }
 
 .step-points {
@@ -134,7 +118,7 @@
 
 .step-points li {
   font-family: var(--font-main);
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text-color);
   margin-bottom: 12px;
   padding-left: 24px;
@@ -156,58 +140,59 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 500px;
+  max-width: 520px;
 }
 
 .step-visual-card {
-  background: #f8f9fa;
+  background: #ffffff;
   border-radius: 24px;
-  width: 100%;
-  aspect-ratio: 1;
+  width: 540px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10),
+    0 0 80px rgba(0, 102, 255, 0.15);
 }
 
 .step-visual-circle {
-  background-color: rgb(0, 102, 255);
+  background-color: #0E6BFF;
   border-radius: 50%;
-  width: 280px;
-  height: 280px;
+  width: 190px;
+  height: 190px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  box-shadow: 0 8px 30px rgba(0, 102, 255, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 102, 255, 0.35);
 }
 
 .step-visual-icon {
   color: white;
-  font-size: 120px;
+  font-size: 95px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+
 .step-visual-badge {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: white;
-  border: 2px solid rgba(0, 102, 255, 0.2);
+  top: -6px;
+  right: -6px;
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  border: 2px solid rgba(0, 102, 255, 0.15);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: var(--font-main);
-  font-size: 20px;
+  color: #0E6BFF;
+  font-size: 18px;
   font-weight: 600;
-  color: var(--heading-color);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .why-customers-love {
@@ -227,14 +212,14 @@
   font-size: 48px;
   font-weight: 600;
   color: var(--heading-color);
-  margin: 0 0 16px 0;
+  margin-bottom: 16px;
 }
 
 .why-customers-subtitle {
   font-family: var(--font-main);
   font-size: 20px;
   color: var(--text-color);
-  margin: 0 0 60px 0;
+  margin-bottom: 60px;
   line-height: 1.6;
 }
 
@@ -242,7 +227,6 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
-  margin-top: 40px;
 }
 
 .customer-card {
@@ -251,7 +235,7 @@
   border-radius: 16px;
   padding: 32px 24px;
   text-align: left;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
@@ -306,8 +290,7 @@
   font-size: 48px;
   font-weight: 600;
   color: var(--heading-color);
-  margin: 0 0 20px 0;
-  line-height: 1.2;
+  margin-bottom: 20px;
 }
 
 .start-earning-text {
@@ -315,13 +298,13 @@
   font-size: 18px;
   color: var(--text-color);
   line-height: 1.6;
-  margin: 0 0 32px 0;
+  margin-bottom: 32px;
 }
 
 .start-earning-points {
   list-style: none;
   padding: 0;
-  margin: 0 0 40px 0;
+  margin-bottom: 40px;
 }
 
 .start-earning-points li {
@@ -341,7 +324,6 @@
 }
 
 .start-earning-btn {
-  padding: 14px 32px;
   font-size: 16px;
   font-weight: 500;
   border-radius: 8px;
