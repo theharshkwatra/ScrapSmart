@@ -2,10 +2,11 @@ import React from 'react';
 import './Services.css';
 import ServiceTile from '../../components/ServiceTile/ServiceTile';
 import servicesData from '../../data/servicesData';
-import MaterialCard from '../../components/MaterialCard/MaterialCard';
+import ServicesMaterialCard from '../../components/ServicesMaterialCard/ServicesMaterialCard';
 import materialsData from '../../data/materialsData';
 import ServiceKeypoints from '../../components/ServiceKeypoints/ServiceKeypoints';
 import keypointsData from '../../data/keypointsData';
+import trucks from '../../assets/Trucks.png'
 import Footer from '../../components/Footer/Footer';
 
 function Services() {
@@ -37,9 +38,9 @@ function Services() {
 						<p className='materials-desc'>We handle a wide range of recyclable materials with expertise and care</p>
 					</div>
 
-					<div className='materials-list'>
+					<div className='serv-materials-list'>
 						{materialsData.map((material) => (
-							<MaterialCard
+							<ServicesMaterialCard
 								key={material.title}
 								title={material.title}
 								desc={material.desc}
@@ -51,7 +52,7 @@ function Services() {
 
 			<section className='unique-service'>
 				<div className='unique-service-content'>
-					<img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&h=600&fit=crop" alt="Recycling bins and scrap materials" className='scrap' />
+					<img src={trucks} alt="Recycling bins and scrap materials" className='scrap' />
 					<div className='service-keypoints'>
 						<h2 className='unique-heading'> Why Our Services Stand Out </h2>
 						{keypointsData.map((keypoint) => (

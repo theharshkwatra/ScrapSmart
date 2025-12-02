@@ -26,7 +26,6 @@ body {
 .main{
   background: linear-gradient(to right, #e0f2fe, #bfdbfe, #93c5fd);
   min-height: calc(100vh - 72px);
-  padding: 40px 0 40px 0;
   display: flex;
   flex-direction: column;
 }

@@ -1,0 +1,42 @@
+.scrp-card-shell {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 24vw;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.scrp-card-shell:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px);
+}
+
+.scrp-card-ico {
+  color: var(--primary-color);
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.scrp-card-body {
+  font-family: var(--font-main);
+}
+
+.scrp-card-head {
+  color: var(--heading-color);
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.scrp-card-text {
+  color: var(--text-color);
+  font-size: 16px;
+  margin: 6px 0 0 0;
+}

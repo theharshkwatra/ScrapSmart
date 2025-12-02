@@ -2,6 +2,7 @@ import React from 'react';
 import './HowItWorks.css';
 import { FaCamera, FaTruck, FaMoneyBillWave, FaCheckCircle } from 'react-icons/fa';
 import { FiFileText } from 'react-icons/fi';
+import earning from '../../assets/earning.png';
 import Footer from '../../components/Footer/Footer';
 import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
@@ -127,16 +128,9 @@ function HowItWorks() {
                 <span>24/7 customer support</span>
               </li>
             </ul>
-            <Button 
-              label="Get Started Now →" 
-              color="rgb(0, 102, 255)" 
-              text="white" 
-              className="start-earning-btn"
-              onClick={handleGetStartedClick}
-            />
           </div>
           <div className="start-earning-image">
-            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop" alt="Urban landscape with highways" />
+            <img src={earning} alt="Urban landscape with highways" />
           </div>
         </div>
       </section>

@@ -1,11 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
-.hero{
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 28px 60px;
 }
 
-.hero-btn{
+.hero-left {
+  width: 50%;
+}
+
+.hero-btn {
   color: white;
   display: flex;
   text-align: center;
@@ -17,30 +24,39 @@
   height: 22px;
 }
 
+.btn-icon {
+  height: 20px;
+  width: 20px;
+}
 
-.heading{
+.btn-content {
+  margin-left: 10px;
+}
+
+.heading {
   font-family: var(--font-main);
   font-size: 65px;
   margin: 8px 0 12px;
 }
 
-.hero-content{
-    width: 40vw;
-}
 
-.btn-icon{
-  height: 20px;
-  width: 20px;
-}
-
-.btn-content{
-  margin-left: 10px;
-}
 
 .content{
-    font-family: var(--font-main);
-    font-size: 20px !important;
-    color: var(--text-color);
-    position: relative;
-    bottom: 1px;
+  font-family: var(--font-main);
+  font-size: 20px !important;
+  color: var(--text-color);
+  position: relative;
+  bottom: 1px;
+}
+
+.hero-right {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+}
+
+.truck-img {
+  width: 100%;
+  max-width: 550px;
+
 }

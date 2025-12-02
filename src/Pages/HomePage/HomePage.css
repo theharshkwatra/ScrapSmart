@@ -9,6 +9,8 @@
   width: 12vw;
   padding: 10px 16px;
   font-size: 18px;
+  position: relative;
+  top: -80px;
 }
 
 .start-btn:hover {
@@ -22,8 +24,10 @@
 .featureSection{
   display: flex;
   width: 45vw;
-  margin: 40px 0 0 45px;
+  margin: 40px 0 0 35px;
   gap: 40px;
+  position: relative;
+  top: -80px;
 }
 
 .service-content{

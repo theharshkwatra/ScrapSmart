@@ -11,37 +11,29 @@ const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // Check if user is authenticated
     const checkAuth = () => {
       const userData = JSON.parse(localStorage.getItem("user") || "{}");
       setIsAuthenticated(userData.isAuthenticated || false);
     };
 
     checkAuth();
-    // Re-check on route changes
     window.addEventListener("storage", checkAuth);
     return () => window.removeEventListener("storage", checkAuth);
   }, [location]);
 
-  // Also check on mount and when location changes
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user") || "{}");
     setIsAuthenticated(userData.isAuthenticated || false);
   }, [location.pathname]);
 
   const handleLogout = () => {
-    // Clear user data from localStorage
     localStorage.removeItem("user");
-    // Optionally clear bookings if you want to clear all data
-    // localStorage.removeItem('bookings');
     setIsAuthenticated(false);
-    // Redirect to home page
     navigate("/");
   };
 
   const navItems = [
     { label: "Home", to: "/" },
-    { label: "About", to: "/about" },
     { label: "Services", to: "/services" },
     { label: "How It Works", to: "/how-it-works" },
   ];
