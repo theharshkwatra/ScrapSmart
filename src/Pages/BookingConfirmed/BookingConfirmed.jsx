@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./BookingConfirmed.css";
 import {
@@ -12,6 +12,20 @@ const BookingConfirmed = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const booking = location.state?.booking;
+
+  useEffect(() => {
+    if (booking && booking.id) {
+      const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+      const idx = bookings.findIndex((b) => b.id === booking.id);
+      const updatedBooking = { ...booking, status: "confirmed", confirmedAt: new Date().toISOString() };
+      if (idx !== -1) {
+        bookings[idx] = updatedBooking;
+      } else {
+        bookings.push(updatedBooking);
+      }
+      localStorage.setItem("bookings", JSON.stringify(bookings));
+    }
+  }, [booking]);
 
   if (!booking) {
     return (

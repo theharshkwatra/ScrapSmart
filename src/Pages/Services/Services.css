@@ -26,10 +26,10 @@
 	grid-template-columns: repeat(3, 1fr);
 	width: 90vw;
 	max-width: 1400px;
-	margin: 60px auto 0 95px;
+	margin: 60px auto 0 75px;
 	gap: 40px;
 }
-
+z
 .materials-section{
 	background: rgb(249, 250, 253);
 	padding: 80px 0;
