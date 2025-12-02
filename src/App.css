@@ -1,5 +1,4 @@
-/* reserve space for fixed navbar */
 .page-wrapper{
-  padding-top: 72px; /* match fixed navbar height */
+  padding-top: 72px; 
   min-height: calc(100vh - 72px);
 }

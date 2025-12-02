@@ -15,13 +15,13 @@ import AcceptConfirmed from "./Pages/AcceptConfirmed/AcceptConfirmed";
 import "./App.css";
 
 import Navbar from "./components/Navbar/Navbar";
-import ServiceTile from "./components/ServiceTile/ServiceTile";
-import servicesData from "./data/servicesData";
-import MaterialCard from "./components/MaterialCard/MaterialCard";
-import materialsData from "./data/materialsData";
-import ServiceKeypoints from "./components/ServiceKeypoints/ServiceKeypoints";
-import keypointsData from "./data/keypointsData";
-import Footer from "./components/Footer/Footer";
+// import ServiceTile from "./components/ServiceTile/ServiceTile";
+// import servicesData from "./data/servicesData";
+// import MaterialCard from "./components/MaterialCard/MaterialCard";
+// import materialsData from "./data/materialsData";
+// import ServiceKeypoints from "./components/ServiceKeypoints/ServiceKeypoints";
+// import keypointsData from "./data/keypointsData";
+// import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
