@@ -30,7 +30,7 @@ function HowItWorks() {
     {
       number: '01',
       title: 'Schedule Pickup',
-      description: 'Choose a convenient time for pickup. Our logistics team will come to your location with all necessary equipment.',
+      description: 'Choose a convenient time for pickup. Our scrap collectors will come to your location with all necessary equipment.',
       points: ['Flexible scheduling','Professional handling'],
       icon: <FaTruck />
     },
