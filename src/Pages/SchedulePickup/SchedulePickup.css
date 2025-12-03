@@ -138,13 +138,3 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
-
-@media (max-width: 768px) {
-  .materials-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .schedule-header h1 {
-    font-size: 32px;
-  }
-}

@@ -9,7 +9,6 @@
   margin: 0 auto;
 }
 
-/* Welcome Banner */
 .welcome-banner {
   background: linear-gradient(135deg, var(--primary-color), #0052cc);
   border-radius: 16px;
@@ -38,7 +37,6 @@
   font-family: var(--font-main);
 }
 
-/* Action Cards */
 .action-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -95,7 +93,6 @@
   font-family: var(--font-main);
 }
 
-/* Dashboard Grid */
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -124,7 +121,6 @@
   font-family: var(--font-main);
 }
 
-/* Transactions */
 .transactions-list {
   display: flex;
   flex-direction: column;
@@ -196,7 +192,6 @@
   font-family: var(--font-main);
 }
 
-/* Environmental Impact */
 .impact-section h2 {
   font-size: 24px;
   color: var(--heading-color);
@@ -254,19 +249,4 @@
   font-size: 14px;
   color: var(--text-color);
   font-family: var(--font-main);
-}
-
-@media (max-width: 768px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .action-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .impact-stats {
-    flex-direction: column;
-    gap: 24px;
-  }
 }

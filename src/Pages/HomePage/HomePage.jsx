@@ -51,7 +51,6 @@ function HomePage() {
       <section className="home-services">
         <div className="service-content">
           <h2>
-            {" "}
             Why Choose <span className="imp"> ScrapSmart </span>
           </h2>
           <p>
@@ -78,7 +77,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CTA section inserted after Why Choose ScrapSmart */}
       <section className="cta-section">
         <div className="cta-inner">
           <h2>Ready to Get Started?</h2>

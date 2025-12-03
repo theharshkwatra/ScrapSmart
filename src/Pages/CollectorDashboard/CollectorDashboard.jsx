@@ -20,7 +20,6 @@ const CollectorDashboard = () => {
   });
 
   useEffect(() => {
-    // Get user data from localStorage
     const userData = JSON.parse(localStorage.getItem("user") || "{}");
     if (!userData.isAuthenticated || userData.role !== "collector") {
       navigate("/role-select");
@@ -28,7 +27,6 @@ const CollectorDashboard = () => {
     }
     setUser(userData);
 
-    // Load bookings
     loadBookings();
   }, [navigate]);
 
@@ -36,7 +34,6 @@ const CollectorDashboard = () => {
     const allBookings = JSON.parse(localStorage.getItem("bookings") || "[]");
     setBookings(allBookings);
 
-    // Calculate stats
     const today = new Date().toISOString().split("T")[0];
     const todayBookings = allBookings.filter((b) => b.date === today);
     const completedBookings = allBookings.filter(
@@ -134,7 +131,6 @@ const CollectorDashboard = () => {
   return (
     <div className="collector-dashboard-container">
       <div className="collector-dashboard-content">
-        {/* Header */}
         <div className="collector-header">
           <div className="header-left">
             <h1>
@@ -144,7 +140,6 @@ const CollectorDashboard = () => {
           </div>
         </div>
 
-        {/* Stats Cards */}
         <div className="stats-cards">
           <div className="stat-card-collector">
             <div className="stat-icon-collector pickup">
@@ -167,7 +162,6 @@ const CollectorDashboard = () => {
           </div>
         </div>
 
-        {/* Tabs */}
         <div className="tabs-container">
           <button
             className={`tab ${activeTab === "pending" ? "active" : ""}`}
@@ -183,7 +177,6 @@ const CollectorDashboard = () => {
           </button>
         </div>
 
-        {/* Bookings List */}
         <div className="bookings-section">
           {displayBookings.length > 0 ? (
             displayBookings.map((booking) => (

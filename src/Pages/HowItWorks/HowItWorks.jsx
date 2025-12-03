@@ -1,18 +1,11 @@
 import React from 'react';
 import './HowItWorks.css';
-import { FaCamera, FaTruck, FaMoneyBillWave, FaCheckCircle } from 'react-icons/fa';
-import { FiFileText } from 'react-icons/fi';
+import { FaTruck, FaMoneyBillWave, FaCheckCircle } from 'react-icons/fa';
 import earning from '../../assets/earning.png';
 import Footer from '../../components/Footer/Footer';
-import Button from '../../components/Button/Button';
-import { useNavigate } from 'react-router-dom';
+
 
 function HowItWorks() {
-  const navigate = useNavigate();
-
-  const handleGetStartedClick = () => {
-    navigate('/services');
-  };
 
   const customerFeatures = [
     {

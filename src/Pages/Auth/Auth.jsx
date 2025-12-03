@@ -33,7 +33,6 @@ const Auth = () => {
       }
     }
 
-    // Store user data in localStorage (simulating authentication)
     const userData = {
       role,
       name: formData.name,
@@ -45,11 +44,9 @@ const Auth = () => {
 
     localStorage.setItem("user", JSON.stringify(userData));
 
-    // Navigate based on role
     if (role === "pickup") {
       navigate("/dashboard");
     } else {
-      // For collector role, navigate to collector dashboard
       navigate("/collector-dashboard");
     }
   };

@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./OrderSummary.css";
-import {
-  FaRupeeSign,
-  FaCalendarAlt,
-  FaClock,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
+import { FaRupeeSign, FaCalendarAlt, FaClock, FaMapMarkerAlt} from "react-icons/fa";
 
 const OrderSummary = () => {
   const navigate = useNavigate();
@@ -18,14 +13,12 @@ const OrderSummary = () => {
   const [address, setAddress] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
-  // Get tomorrow's date as minimum date
   const getMinDate = () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     return tomorrow.toISOString().split("T")[0];
   };
 
-  // Check if form is valid
   useEffect(() => {
     setIsFormValid(
       selectedDate !== "" && selectedTime !== "" && address.trim() !== ""
@@ -38,10 +31,8 @@ const OrderSummary = () => {
       return;
     }
 
-    // Get user data for customer name
     const userData = JSON.parse(localStorage.getItem("user") || "{}");
 
-    // Create booking object
     const booking = {
       id: Date.now().toString(),
       materials: quantities,
@@ -54,12 +45,10 @@ const OrderSummary = () => {
       createdAt: new Date().toISOString(),
     };
 
-    // Save booking to localStorage
     const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
     bookings.push(booking);
     localStorage.setItem("bookings", JSON.stringify(bookings));
 
-    // Navigate to confirmation page
     navigate("/booking-confirmed", { state: { booking } });
   };
 

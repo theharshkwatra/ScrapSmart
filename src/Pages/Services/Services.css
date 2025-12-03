@@ -12,13 +12,13 @@
 }
 
 .services-heading{
-		color: var(--heading-color);
-		font-weight: 500;
+	color: var(--heading-color);
+	font-weight: 500;
 }
 
 .services-content{
-		color: var(--text-color);
-		font-size: 20px;    
+	color: var(--text-color);
+	font-size: 20px;    
 }
 
 .services-grid{
@@ -58,18 +58,18 @@ z
 }
 
 .materials-heading, .unique-heading{
-		color: var(--heading-color);
-		font-size: 48px;
-		font-weight: 500;
+	color: var(--heading-color);
+	font-size: 48px;
+	font-weight: 500;
 }
 
 .materials-desc{
-		color: var(--text-color);
-		font-size: 20px;
+	color: var(--text-color);
+	font-size: 20px;
 }
 
 .unique-service {
-	padding: 80px 0;        
+	padding: 130px 0;        
 	display: flex;
 	justify-content: center;
 	background: white;

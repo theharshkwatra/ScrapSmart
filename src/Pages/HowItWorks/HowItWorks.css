@@ -46,14 +46,6 @@
   flex-direction: row-reverse;
 }
 
-/* .step-reverse .step-content {
-  text-align: right;
-} */
-
-/* .step-reverse .step-header {
-  flex-direction: row-reverse;
-} */
-
 .step-content {
   flex: 1;
   max-width: 550px;
@@ -330,10 +322,9 @@
 }
 
 .start-earning-image {
-  flex: 1;
   max-width: 500px;
   position: relative;
-  left: 60px;
+  left: 190px;
 }
 
 .start-earning-image img {

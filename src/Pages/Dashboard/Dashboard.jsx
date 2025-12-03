@@ -13,24 +13,20 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    // Get user data from localStorage
     const userData = JSON.parse(localStorage.getItem("user") || "{}");
     if (!userData.isAuthenticated) {
       navigate("/role-select");
       return;
     }
-    // Redirect collectors to their dashboard
     if (userData.role === "collector") {
       navigate("/collector-dashboard");
       return;
     }
     setUser(userData);
 
-    // Get booking data from localStorage
     const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
     const confirmedBookings = bookings.filter((b) => b.status === "confirmed");
 
-    // Calculate stats
     const earnings = confirmedBookings.reduce(
       (sum, booking) => sum + (booking.estimatedValue || 0),
       0
@@ -45,7 +41,6 @@ const Dashboard = () => {
       );
     }, 0);
 
-    // Get recent transactions with material names
     const recentTransactions = confirmedBookings
       .sort((a, b) => new Date(b.date) - new Date(a.date))
       .slice(0, 5)
@@ -70,7 +65,7 @@ const Dashboard = () => {
     setStats({
       totalEarnings: earnings,
       totalRecycled: recycled,
-      recentTransactions,
+      recentTransactions
     });
   }, [navigate]);
 
@@ -83,7 +78,6 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <div className="dashboard-content">
-        {/* Welcome Banner */}
         <div className="welcome-banner">
           <h1>
             Welcome, <span className="wave">👋</span>
@@ -91,7 +85,6 @@ const Dashboard = () => {
           <p>Ready to make a difference today?</p>
         </div>
 
-        {/* Action Cards */}
         <div className="action-cards">
           <div className="action-card" onClick={handleSchedulePickup}>
             <div className="action-icon schedule">
@@ -110,9 +103,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Main Content Grid */}
         <div className="dashboard-grid">
-          {/* Recent Transactions */}
           <div className="dashboard-section transactions-section">
             <div className="section-header">
               <h2>Recent Transactions</h2>
@@ -146,7 +137,6 @@ const Dashboard = () => {
             )}
           </div>
 
-          {/* Environmental Impact */}
           <div className="dashboard-section impact-section">
             <h2>Environmental Impact</h2>
             <div className="impact-card">
