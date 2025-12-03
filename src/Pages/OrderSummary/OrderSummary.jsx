@@ -93,8 +93,7 @@ const OrderSummary = () => {
 
           <div className="order-section">
             <div className="estimated-value-card">
-              <FaRupeeSign />
-              <div>
+             <div>
                 <h3>Estimated Value</h3>
                 <p className="value-amount">₹{estimatedValue.toFixed(0)}</p>
               </div>
