@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Auth.css";
 
@@ -16,6 +16,19 @@ const Auth = () => {
     confirmPassword: "",
   });
 
+  // Check if already logged in
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user") || "{}");
+    if (userData.isAuthenticated && userData.token) {
+      // Already logged in, redirect to dashboard
+      if (userData.role === "collector") {
+        navigate("/collector-dashboard");
+      } else {
+        navigate("/dashboard");
+      }
+    }
+  }, [navigate]);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -23,7 +36,7 @@ const Auth = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!isLogin) {
@@ -33,21 +46,63 @@ const Auth = () => {
       }
     }
 
-    const userData = {
-      role,
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      address: formData.address,
-      isAuthenticated: true,
-    };
+    const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
+    const payload = isLogin
+      ? { email: formData.email, password: formData.password, role }
+      : {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          password: formData.password,
+          role,
+        };
 
-    localStorage.setItem("user", JSON.stringify(userData));
+    try {
+      const response = await fetch('http://localhost:5000' + endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
 
-    if (role === "pickup") {
-      navigate("/dashboard");
-    } else {
-      navigate("/collector-dashboard");
+      const data = await response.json();
+
+      if (data.success) {
+        if (isLogin) {
+          // Login successful - store user and redirect
+          localStorage.setItem(
+            'user',
+            JSON.stringify({
+              role: data.user?.role || role,
+              name: data.user?.name || formData.name,
+              email: data.user?.email || formData.email,
+              token: data.token,
+              isAuthenticated: true,
+            })
+          );
+
+          if (role === 'pickup') {
+            navigate('/dashboard');
+          } else {
+            navigate('/collector-dashboard');
+          }
+        } else {
+          // Registration successful - switch to login mode
+          alert('Registration successful! Please login with your credentials.');
+          setIsLogin(true);
+          setFormData({
+            ...formData,
+            name: "",
+            password: "",
+            confirmPassword: ""
+          });
+        }
+      } else {
+        alert(data.message || 'Authentication failed');
+      }
+    } catch (error) {
+      console.error('Auth error:', error);
+      alert('Unable to connect to server. Please try again.');
     }
   };
 

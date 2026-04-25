@@ -15,7 +15,7 @@ const generateToken = (userId) => {
 // REGISTER
 exports.register = async (req, res) => {
     try{
-        const {name, email, phone, password} = req.body; // req.body contains the JSON data the frontend sent.
+        const {name, email, phone, password, role} = req.body;
         if(!name || !email || !phone || !password){
             return res.status(400).json({
                 success: false,
@@ -31,7 +31,9 @@ exports.register = async (req, res) => {
         }
         
         const db = getDB();
-        const existingUser = await db.collection('users').findOne({
+        const collectionName = role === 'collector' ? 'collectors' : 'users';
+        
+        const existingUser = await db.collection(collectionName).findOne({
             email: email.toLowerCase()
         });
 
@@ -42,18 +44,19 @@ exports.register = async (req, res) => {
             });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 12); // 12 is salt rounds, the number of times the hashing runs
+        const hashedPassword = await bcrypt.hash(password, 12);
 
         const newUser = {
             name: name.trim(),
             email: email.toLowerCase(),
             phone: phone.trim(),
             password: hashedPassword,
+            role: role || 'pickup',
             isActive: true,
             createdAt: new Date()
         };
 
-        const result = await db.collection('users').insertOne(newUser);
+        const result = await db.collection(collectionName).insertOne(newUser);
         const token = generateToken(result.insertedId);
 
         res.status(201).json({
@@ -63,7 +66,8 @@ exports.register = async (req, res) => {
             user: {
                 id: result.insertedId,
                 name: newUser.name,
-                email: newUser.email
+                email: newUser.email,
+                role: newUser.role
             }
         });
     }catch(error){
@@ -80,9 +84,9 @@ exports.register = async (req, res) => {
 // LOGIN
 exports.login = async (req, res) => {
     try{
-        const {email, password} = req.body;
+        const {email, password, role} = req.body;
 
-        if(!email || !!password){
+        if(!email || !password){
             return res.status(400).json({
                 success: false,
                 message: 'Please provide both email and password'
@@ -90,7 +94,9 @@ exports.login = async (req, res) => {
         }
 
         const db = getDB();
-        const user = await db.collection('users').findOne({
+        const collectionName = role === 'collector' ? 'collectors' : 'users';
+        
+        const user = await db.collection(collectionName).findOne({
             email: email.toLowerCase()
         });
 
@@ -126,7 +132,8 @@ exports.login = async (req, res) => {
             user: {
                 id: user._id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                role: user.role
             }
         });
     }catch(error){

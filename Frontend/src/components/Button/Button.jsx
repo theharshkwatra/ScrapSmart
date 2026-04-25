@@ -17,12 +17,15 @@ const Button = (props) => {
         
         backgroundColor: currentColor, 
         color: props.text || 'white',
-        transition: 'backgroundColor 0.5s'
+        transition: 'backgroundColor 0.5s',
+        cursor: props.disabled ? 'not-allowed' : 'pointer',
+        opacity: props.disabled ? 0.5 : 1
       }}
 
-      onMouseEnter={() => setisHovered(true)}
+      onMouseEnter={() => !props.disabled && setisHovered(true)}
       onMouseLeave={() => setisHovered(false)}
-      onClick={props.onClick}
+      onClick={props.disabled ? undefined : props.onClick}
+      disabled={props.disabled}
     >
       {props.label}
     </button>

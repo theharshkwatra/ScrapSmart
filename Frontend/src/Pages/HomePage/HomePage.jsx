@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
@@ -11,9 +11,17 @@ import Footer from "../../components/Footer/Footer";
 
 function HomePage() {
   const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user") || "{}");
+    setIsAuthenticated(!!userData.isAuthenticated && !!userData.token);
+  }, []);
 
   const handleGetStartedClick = () => {
-    navigate("/role-select");
+    if (!isAuthenticated) {
+      navigate("/role-select");
+    }
   };
 
   return (
@@ -27,6 +35,7 @@ function HomePage() {
             text="white"
             className="start-btn"
             onClick={handleGetStartedClick}
+            disabled={isAuthenticated}
           />
           <Button
             label={"How It Works"}
@@ -90,6 +99,7 @@ function HomePage() {
             text="rgb(0,102,255)"
             className="cta-btn"
             onClick={handleGetStartedClick}
+            disabled={isAuthenticated}
           />
         </div>
       </section>

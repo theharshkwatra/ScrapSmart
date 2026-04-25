@@ -9,26 +9,38 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const checkAuth = () => {
       const userData = JSON.parse(localStorage.getItem("user") || "{}");
-      setIsAuthenticated(userData.isAuthenticated || false);
+      const isAuth = !!userData.isAuthenticated && !!userData.token;
+      setIsAuthenticated(isAuth);
+      setUser(userData);
     };
 
     checkAuth();
-    window.addEventListener("storage", checkAuth);
-    return () => window.removeEventListener("storage", checkAuth);
+    
+    // Listen for storage changes
+    const handleStorageChange = () => checkAuth();
+    window.addEventListener("storage", handleStorageChange);
+    
+    // Check on route changes
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, [location]);
 
+  // Additional check when location changes
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user") || "{}");
-    setIsAuthenticated(userData.isAuthenticated || false);
+    const isAuth = !!userData.isAuthenticated && !!userData.token;
+    setIsAuthenticated(isAuth);
+    setUser(userData);
   }, [location.pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     setIsAuthenticated(false);
+    setUser(null);
     navigate("/");
   };
 
@@ -58,10 +70,22 @@ const Navbar = () => {
             </NavLink>
           ))}
           {isAuthenticated ? (
-            <button className="logout-btn" onClick={handleLogout}>
-              <FaSignOutAlt />
-              <span>Logout</span>
-            </button>
+            <>
+              <NavLink
+                to={user?.role === "collector" ? "/collector-dashboard" : "/dashboard"}
+                className={({ isActive }) =>
+                  isActive ? "navlink active" : "navlink"
+                }
+              >
+                {({ isActive }) => (
+                  <Button label="Dashboard" active={isActive} />
+                )}
+              </NavLink>
+              <button className="logout-btn" onClick={handleLogout}>
+                <FaSignOutAlt />
+                <span>Logout</span>
+              </button>
+            </>
           ) : (
             <Link to="/role-select" className="navlink get-started-link">
               <Button
