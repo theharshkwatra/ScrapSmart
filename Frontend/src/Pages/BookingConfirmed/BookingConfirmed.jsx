@@ -13,19 +13,7 @@ const BookingConfirmed = () => {
   const location = useLocation();
   const booking = location.state?.booking;
 
-  useEffect(() => {
-    if (booking && booking.id) {
-      const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-      const idx = bookings.findIndex((b) => b.id === booking.id);
-      const updatedBooking = { ...booking, status: "confirmed", confirmedAt: new Date().toISOString() };
-      if (idx !== -1) {
-        bookings[idx] = updatedBooking;
-      } else {
-        bookings.push(updatedBooking);
-      }
-      localStorage.setItem("bookings", JSON.stringify(bookings));
-    }
-  }, [booking]);
+  useEffect(() => {}, [booking]);
 
   if (!booking) {
     return (
@@ -48,11 +36,7 @@ const BookingConfirmed = () => {
   };
 
   const formatTime = (timeString) => {
-    const [hours, minutes] = timeString.split(":");
-    const hour = parseInt(hours);
-    const ampm = hour >= 12 ? "PM" : "AM";
-    const displayHour = hour % 12 || 12;
-    return `${displayHour}:${minutes} ${ampm}`;
+    return timeString;
   };
 
   return (
@@ -67,13 +51,16 @@ const BookingConfirmed = () => {
         </p>
 
         <div className="booking-details-card">
+          <div className="booking-id-badge">
+            ID: {booking._id?.toString().substring(0, 12).toUpperCase() || "N/A"}
+          </div>
           <h2>Booking Details</h2>
 
           <div className="detail-item">
             <FaCalendarAlt />
             <div>
               <span className="detail-label">Pickup Date</span>
-              <span className="detail-value">{formatDate(booking.date)}</span>
+              <span className="detail-value">{formatDate(booking.scheduledDate)}</span>
             </div>
           </div>
 
@@ -81,16 +68,16 @@ const BookingConfirmed = () => {
             <FaClock />
             <div>
               <span className="detail-label">Pickup Time</span>
-              <span className="detail-value">{formatTime(booking.time)}</span>
+              <span className="detail-value">{formatTime(booking.timeSlot)}</span>
             </div>
           </div>
 
           <div className="detail-item">
             <FaRupeeSign />
             <div>
-              <span className="detail-label">Estimated Value</span>
+              <span className="detail-label">Estimated Weight</span>
               <span className="detail-value">
-                ₹{booking.estimatedValue.toFixed(0)}
+                {booking.estimatedWeight} kg
               </span>
             </div>
           </div>

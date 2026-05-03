@@ -11,16 +11,10 @@ import SchedulePickup from "./Pages/SchedulePickup/SchedulePickup";
 import OrderSummary from "./Pages/OrderSummary/OrderSummary";
 import BookingConfirmed from "./Pages/BookingConfirmed/BookingConfirmed";
 import AcceptConfirmed from "./Pages/AcceptConfirmed/AcceptConfirmed";
+import MyBookings from "./Pages/MyBookings/MyBookings";
 import "./App.css";
 
 import Navbar from "./components/Navbar/Navbar";
-// import ServiceTile from "./components/ServiceTile/ServiceTile";
-// import servicesData from "./data/servicesData";
-// import MaterialCard from "./components/MaterialCard/MaterialCard";
-// import materialsData from "./data/materialsData";
-// import ServiceKeypoints from "./components/ServiceKeypoints/ServiceKeypoints";
-// import keypointsData from "./data/keypointsData";
-// import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -39,6 +33,7 @@ function App() {
           <Route path="/order-summary" element={<OrderSummary />} />
           <Route path="/booking-confirmed" element={<BookingConfirmed />} />
           <Route path="/accept-confirmed" element={<AcceptConfirmed />} />
+          <Route path="/my-bookings" element={<MyBookings />} />
         </Routes>
       </div>
     </BrowserRouter>

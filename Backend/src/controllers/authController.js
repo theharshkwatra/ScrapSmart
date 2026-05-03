@@ -15,7 +15,7 @@ const generateToken = (userId) => {
 // REGISTER
 exports.register = async (req, res) => {
     try{
-        const {name, email, phone, password, role} = req.body;
+        const {name, email, phone, password, role} = req.body; // req.body contains the JSON data the frontend sent.
         if(!name || !email || !phone || !password){
             return res.status(400).json({
                 success: false,
@@ -26,14 +26,12 @@ exports.register = async (req, res) => {
         if(password.length < 6){
             return res.status(400).json({
                 success: false,
-                message: 'Password must be at least  characters long'
+                message: 'Password must be at least 6 characters long'
             });
         }
         
         const db = getDB();
-        const collectionName = role === 'collector' ? 'collectors' : 'users';
-        
-        const existingUser = await db.collection(collectionName).findOne({
+        const existingUser = await db.collection('users').findOne({
             email: email.toLowerCase()
         });
 
@@ -44,7 +42,7 @@ exports.register = async (req, res) => {
             });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 12);
+        const hashedPassword = await bcrypt.hash(password, 12); // 12 is salt rounds, the number of times the hashing runs
 
         const newUser = {
             name: name.trim(),
@@ -56,7 +54,7 @@ exports.register = async (req, res) => {
             createdAt: new Date()
         };
 
-        const result = await db.collection(collectionName).insertOne(newUser);
+        const result = await db.collection('users').insertOne(newUser);
         const token = generateToken(result.insertedId);
 
         res.status(201).json({
@@ -84,7 +82,7 @@ exports.register = async (req, res) => {
 // LOGIN
 exports.login = async (req, res) => {
     try{
-        const {email, password, role} = req.body;
+        const {email, password} = req.body;
 
         if(!email || !password){
             return res.status(400).json({
@@ -94,9 +92,7 @@ exports.login = async (req, res) => {
         }
 
         const db = getDB();
-        const collectionName = role === 'collector' ? 'collectors' : 'users';
-        
-        const user = await db.collection(collectionName).findOne({
+        const user = await db.collection('users').findOne({
             email: email.toLowerCase()
         });
 
@@ -133,7 +129,7 @@ exports.login = async (req, res) => {
                 id: user._id,
                 name: user.name,
                 email: user.email,
-                role: user.role
+                role: user.role || 'pickup'
             }
         });
     }catch(error){

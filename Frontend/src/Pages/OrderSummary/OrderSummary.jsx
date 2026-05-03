@@ -32,24 +32,40 @@ const OrderSummary = () => {
     }
 
     const userData = JSON.parse(localStorage.getItem("user") || "{}");
+    const token = userData.token;
 
-    const booking = {
-      id: Date.now().toString(),
-      materials: quantities,
-      estimatedValue: estimatedValue,
-      date: selectedDate,
-      time: selectedTime,
-      address: address.trim(),
-      customerName: userData.name || "Customer",
-      status: "pending",
-      createdAt: new Date().toISOString(),
+    const bookingData = {
+      address: {
+        street: address.trim(),
+        city: "Default City", 
+        pincode: "000000"
+      },
+      scheduledDate: selectedDate,
+      timeSlot: selectedTime,
+      scrapTypes: Object.keys(materials),
+      estimatedWeight: Object.values(quantities).reduce((a, b) => a + b, 0)
     };
 
-    const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-    bookings.push(booking);
-    localStorage.setItem("bookings", JSON.stringify(bookings));
-
-    navigate("/booking-confirmed", { state: { booking } });
+    fetch('http://localhost:5000/api/bookings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(bookingData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        navigate("/booking-confirmed", { state: { booking: data.data } });
+      } else {
+        alert(data.message || 'Failed to create booking');
+      }
+    })
+    .catch(error => {
+      console.error('Error creating booking:', error);
+      alert('Unable to connect to server. Please try again.');
+    });
   };
 
   if (!materials || !quantities) {
@@ -121,15 +137,19 @@ const OrderSummary = () => {
               <div className="time-selector">
                 <label htmlFor="pickup-time">
                   <FaClock />
-                  Pickup Time
+                  Pickup Time Slot
                 </label>
-                <input
-                  type="time"
+                <select
                   id="pickup-time"
                   value={selectedTime}
                   onChange={(e) => setSelectedTime(e.target.value)}
                   required
-                />
+                >
+                  <option value="">Select time slot</option>
+                  <option value="9am-12pm">9am - 12pm</option>
+                  <option value="12pm-3pm">12pm - 3pm</option>
+                  <option value="3pm-6pm">3pm - 6pm</option>
+                </select>
               </div>
             </div>
           </div>

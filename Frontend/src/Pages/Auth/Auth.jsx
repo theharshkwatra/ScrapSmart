@@ -48,14 +48,14 @@ const Auth = () => {
 
     const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
     const payload = isLogin
-      ? { email: formData.email, password: formData.password, role }
+      ? { email: formData.email, password: formData.password }
       : {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
           address: formData.address,
           password: formData.password,
-          role,
+          role: role,
         };
 
     try {

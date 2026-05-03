@@ -13,7 +13,8 @@ const CollectorDashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [activeTab, setActiveTab] = useState("active");
-  const [bookings, setBookings] = useState([]);
+  const [availableBookings, setAvailableBookings] = useState([]);
+  const [assignedBookings, setAssignedBookings] = useState([]);
   const [stats, setStats] = useState({
     todayPickups: 0,
     completed: 0,
@@ -31,55 +32,62 @@ const CollectorDashboard = () => {
   }, [navigate]);
 
   const loadBookings = () => {
-    const allBookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-    setBookings(allBookings);
+    const token = JSON.parse(localStorage.getItem("user") || "{}").token;
 
-    const today = new Date().toISOString().split("T")[0];
-    const todayBookings = allBookings.filter((b) => b.date === today);
-    const completedBookings = allBookings.filter(
-      (b) =>
-        b.status === "completed" &&
-        b.collectorId === (user?.email || user?.name || "collector")
-    );
+    fetch("http://localhost:5000/api/bookings/available", {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        setAvailableBookings(data.bookings);
+      }
+    })
+    .catch(error => console.error("Error fetching available bookings:", error));
 
-    setStats({
-      todayPickups: todayBookings.filter(
-        (b) =>
-          (b.status === "assigned" || b.status === "completed") &&
-          b.collectorId === (user?.email || user?.name || "collector")
-      ).length,
-      completed: completedBookings.length,
-    });
+    // Load assigned
+    fetch("http://localhost:5000/api/bookings/my-assigned", {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        setAssignedBookings(data.bookings);
+      }
+    })
+    .catch(error => console.error("Error fetching assigned bookings:", error));
   };
 
   const handleAccept = (bookingId) => {
-    const allBookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-    const updatedBookings = allBookings.map((booking) => {
-      if (booking.id === bookingId) {
-        return {
-          ...booking,
-          status: "assigned",
-          collectorId: user?.email || user?.name || "collector",
-          collectorName: user?.name || "Collector",
-        };
+    const token = JSON.parse(localStorage.getItem("user") || "{}").token;
+    fetch(`http://localhost:5000/api/bookings/${bookingId}/accept`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        loadBookings();
+        navigate("/accept-confirmed", { state: { bookingId } });
+      } else {
+        alert(data.message || 'Failed to accept booking');
       }
-      return booking;
+    })
+    .catch(error => {
+      console.error("Error accepting booking:", error);
+      alert('Unable to connect to server. Please try again.');
     });
-    localStorage.setItem("bookings", JSON.stringify(updatedBookings));
-    loadBookings();
-    navigate("/accept-confirmed", { state: { bookingId } });
   };
 
-  const getMaterialName = (materials) => {
+  const getMaterialName = (scrapTypes) => {
     const materialNames = {
       paper: "Paper & Cardboard",
       plastic: "Plastic Bottles",
       metal: "Metal Scrap",
       ewaste: "E-Waste",
     };
-    const entries = Object.entries(materials || {});
-    if (entries.length > 0) {
-      return `${materialNames[entries[0][0]] || "Mixed"} - ${entries[0][1]} kg`;
+    if (scrapTypes && scrapTypes.length > 0) {
+      return `${materialNames[scrapTypes[0]] || "Mixed"}`;
     }
     return "Mixed Materials";
   };
@@ -94,39 +102,32 @@ const CollectorDashboard = () => {
   };
 
   const formatTime = (timeString) => {
-    const [hours, minutes] = timeString.split(":");
-    const hour = parseInt(hours);
-    const ampm = hour >= 12 ? "PM" : "AM";
-    const displayHour = hour % 12 || 12;
-    return `${displayHour}:${minutes} ${ampm}`;
+    // Assuming timeSlot is like '9am-12pm'
+    return timeString;
   };
 
   const handleComplete = (bookingId) => {
-    const allBookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-    const updatedBookings = allBookings.map((booking) => {
-      if (booking.id === bookingId) {
-        return {
-          ...booking,
-          status: "completed",
-        };
+    const token = JSON.parse(localStorage.getItem("user") || "{}").token;
+    fetch(`http://localhost:5000/api/bookings/${bookingId}/complete`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        loadBookings();
+      } else {
+        alert(data.message || 'Failed to complete booking');
       }
-      return booking;
+    })
+    .catch(error => {
+      console.error("Error completing booking:", error);
+      alert('Unable to connect to server. Please try again.');
     });
-    localStorage.setItem("bookings", JSON.stringify(updatedBookings));
-    loadBookings();
   };
 
-  const assignedBookings = bookings.filter(
-    (b) =>
-      (b.status === "assigned" || b.status === "completed") &&
-      b.collectorId === (user?.email || user?.name || "collector")
-  );
-  const pendingBookings = bookings.filter(
-    (b) => b.status === "pending" || b.status === "confirmed"
-  );
-
   const displayBookings =
-    activeTab === "active" ? assignedBookings : pendingBookings;
+    activeTab === "active" ? assignedBookings : availableBookings;
 
   return (
     <div className="collector-dashboard-container">
@@ -180,12 +181,12 @@ const CollectorDashboard = () => {
         <div className="bookings-section">
           {displayBookings.length > 0 ? (
             displayBookings.map((booking) => (
-              <div key={booking.id} className="booking-card">
+              <div key={booking._id} className="booking-card">
                 <div className="booking-header">
                   <div>
-                    <h3>{booking.customerName || "Customer"}</h3>
+                    <h3>Pickup Request</h3>
                     <p className="order-id">
-                      Order #{booking.id.slice(-6).toUpperCase()}
+                      Order #{booking._id?.toString().slice(-6).toUpperCase() || "N/A"}
                     </p>
                   </div>
                   <span className={`status-badge ${booking.status}`}>
@@ -200,28 +201,28 @@ const CollectorDashboard = () => {
                 <div className="booking-details">
                   <div className="detail-row">
                     <FaMapMarkerAlt />
-                    <span>{booking.address || "Address not provided"}</span>
+                    <span>{booking.address?.street || "Address not provided"}</span>
                   </div>
                   <div className="detail-row">
                     <FaBox />
-                    <span>{getMaterialName(booking.materials)}</span>
+                    <span>{getMaterialName(booking.scrapTypes)}</span>
                   </div>
                   <div className="detail-row">
                     <FaClock />
                     <span>
-                      {formatDate(booking.date)} • {formatTime(booking.time)}
+                      {formatDate(booking.scheduledDate)} • {formatTime(booking.timeSlot)}
                     </span>
                   </div>
                 </div>
 
                 <div className="booking-footer">
                   <div className="booking-value">
-                    ₹{booking.estimatedValue?.toFixed(0) || "0"}
+                    ₹{(booking.estimatedWeight * 10)?.toFixed(0) || "0"}
                   </div>
                   {activeTab === "pending" && (
                     <button
                       className="accept-btn"
-                      onClick={() => handleAccept(booking.id)}
+                      onClick={() => handleAccept(booking._id)}
                     >
                       Accept
                     </button>
@@ -233,7 +234,7 @@ const CollectorDashboard = () => {
                       }`}
                       onClick={() =>
                         booking.status !== "completed" &&
-                        handleComplete(booking.id)
+                        handleComplete(booking._id)
                       }
                       disabled={booking.status === "completed"}
                     >

@@ -24,49 +24,53 @@ const Dashboard = () => {
     }
     setUser(userData);
 
-    const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-    const confirmedBookings = bookings.filter((b) => b.status === "confirmed");
+    const token = userData.token;
+    fetch("http://localhost:5000/api/bookings", {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        const bookings = data.bookings;
+        const activeBookings = bookings.filter((b) => b.status !== "cancelled");
 
-    const earnings = confirmedBookings.reduce(
-      (sum, booking) => sum + (booking.estimatedValue || 0),
-      0
-    );
-    const recycled = confirmedBookings.reduce((sum, booking) => {
-      return (
-        sum +
-        Object.values(booking.materials || {}).reduce(
-          (matSum, qty) => matSum + qty,
+        const earnings = activeBookings.reduce(
+          (sum, booking) => sum + (booking.estimatedWeight * 10 || 0), // Assuming some price
           0
-        )
-      );
-    }, 0);
+        );
+        const recycled = activeBookings.reduce((sum, booking) => {
+          return sum + (booking.estimatedWeight || 0);
+        }, 0);
 
-    const recentTransactions = confirmedBookings
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, 5)
-      .map((booking) => {
-        const materialNames = {
-          paper: "Paper & Cardboard",
-          plastic: "Plastic Bottles",
-          metal: "Metal Scrap",
-          ewaste: "E-Waste",
-        };
-        const materialEntries = Object.entries(booking.materials || {});
-        const primaryMaterial =
-          materialEntries.length > 0
-            ? materialNames[materialEntries[0][0]] || "Mixed Materials"
-            : "Mixed Materials";
-        return {
-          ...booking,
-          materialName: primaryMaterial,
-        };
-      });
+        const recentTransactions = activeBookings
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .slice(0, 5)
+          .map((booking) => {
+            const materialNames = {
+              paper: "Paper & Cardboard",
+              plastic: "Plastic Bottles",
+              metal: "Metal Scrap",
+              ewaste: "E-Waste",
+            };
+            const materialEntries = booking.scrapTypes || [];
+            const primaryMaterial =
+              materialEntries.length > 0
+                ? materialNames[materialEntries[0]] || "Mixed Materials"
+                : "Mixed Materials";
+            return {
+              ...booking,
+              materialName: primaryMaterial,
+            };
+          });
 
-    setStats({
-      totalEarnings: earnings,
-      totalRecycled: recycled,
-      recentTransactions
-    });
+        setStats({
+          totalEarnings: earnings,
+          totalRecycled: recycled,
+          recentTransactions
+        });
+      }
+    })
+    .catch(error => console.error("Error fetching bookings:", error));
   }, [navigate]);
 
   const handleSchedulePickup = () => {
