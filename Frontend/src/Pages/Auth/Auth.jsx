@@ -69,6 +69,17 @@ const Auth = () => {
 
       if (data.success) {
         if (isLogin) {
+          if (data.user?.role !== role) {
+            alert(
+              `This email belongs to a ${
+                data.user?.role === 'collector' ? 'collector' : 'customer'
+              } account. Please use the correct login page or sign up as a ${
+                role === 'collector' ? 'collector' : 'customer'
+              }.`
+            );
+            return;
+          }
+
           // Login successful - store user and redirect
           localStorage.setItem(
             'user',

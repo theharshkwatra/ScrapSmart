@@ -12,7 +12,7 @@ import {
 const CollectorDashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [activeTab, setActiveTab] = useState("active");
+  const [activeTab, setActiveTab] = useState("pending");
   const [availableBookings, setAvailableBookings] = useState([]);
   const [assignedBookings, setAssignedBookings] = useState([]);
   const [stats, setStats] = useState({
@@ -40,7 +40,7 @@ const CollectorDashboard = () => {
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-        setAvailableBookings(data.bookings);
+        setAvailableBookings(sortBookingsByDateTime(data.bookings));
       }
     })
     .catch(error => console.error("Error fetching available bookings:", error));
@@ -106,6 +106,21 @@ const CollectorDashboard = () => {
     return timeString;
   };
 
+  const sortBookingsByDateTime = (bookings) => {
+    const timeOrder = ['9am-12pm', '12pm-3pm', '3pm-6pm'];
+    return [...bookings].sort((a, b) => {
+      const dateA = new Date(a.scheduledDate);
+      const dateB = new Date(b.scheduledDate);
+      if (dateA < dateB) return -1;
+      if (dateA > dateB) return 1;
+      const timeA = timeOrder.indexOf(a.timeSlot) === -1 ? Infinity : timeOrder.indexOf(a.timeSlot);
+      const timeB = timeOrder.indexOf(b.timeSlot) === -1 ? Infinity : timeOrder.indexOf(b.timeSlot);
+      if (timeA < timeB) return -1;
+      if (timeA > timeB) return 1;
+      return new Date(a.createdAt) - new Date(b.createdAt);
+    });
+  };
+
   const handleComplete = (bookingId) => {
     const token = JSON.parse(localStorage.getItem("user") || "{}").token;
     fetch(`http://localhost:5000/api/bookings/${bookingId}/complete`, {
@@ -168,7 +183,7 @@ const CollectorDashboard = () => {
             className={`tab ${activeTab === "pending" ? "active" : ""}`}
             onClick={() => setActiveTab("pending")}
           >
-            Pending
+            Pending Pickups
           </button>
           <button
             className={`tab ${activeTab === "active" ? "active" : ""}`}
@@ -186,7 +201,7 @@ const CollectorDashboard = () => {
                   <div>
                     <h3>Pickup Request</h3>
                     <p className="order-id">
-                      Order #{booking._id?.toString().slice(-6).toUpperCase() || "N/A"}
+                      Order ID #{booking._id?.toString().slice(-12).toUpperCase() || "N/A"}
                     </p>
                   </div>
                   <span className={`status-badge ${booking.status}`}>

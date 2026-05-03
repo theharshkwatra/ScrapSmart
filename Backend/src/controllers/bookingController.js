@@ -626,10 +626,22 @@ exports.getCollectorStats = async (req, res) => {
 exports.getAvailableBookings = async (req, res) => {
     try{
         const db = getDB();
-        const bookings = await db.collection('bookings')
-        .find({status: {$in: ['pending', 'confirmed']}})
-        .sort({createdAt: -1})
-        .toArray();
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const bookings = await db.collection('bookings').aggregate([
+            {
+                $match: {
+                    $and: [
+                        {status: {$in: ['pending', 'confirmed']}},
+                        {scheduledDate: {$gte: today}}
+                    ]
+                }
+            },
+            {$addFields: {timeSort: {$indexOfArray: [['9am-12pm', '12pm-3pm', '3pm-6pm'], '$timeSlot']}}},
+            {$sort: {scheduledDate: 1, timeSort: 1, createdAt: 1}},
+            {$project: {timeSort: 0}}
+        ]).toArray();
 
         res.json({
             success: true,
