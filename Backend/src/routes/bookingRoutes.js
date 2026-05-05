@@ -4,7 +4,7 @@ const {
     createBooking,
     getMyBookings,
     getBookingsById,
-    cancelBooking,
+    deleteBooking,
     updateBooking,
     addScrapTypeToBooking,
     removeScrapTypeFromBooking,
@@ -36,7 +36,7 @@ router.get('/', getMyBookings);
 router.get('/:id', getBookingsById);
 
 router.put('/:id', updateBooking);
-router.put('/:id/cancel', cancelBooking);
+router.delete('/:id', deleteBooking);
 router.put('/:id/scrap/add', addScrapTypeToBooking);
 router.put('/:id/scrap/remove', removeScrapTypeFromBooking);
 router.put('/:id/accept', acceptBooking);

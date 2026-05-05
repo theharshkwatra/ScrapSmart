@@ -151,8 +151,8 @@ exports.getBookingsById = async (req, res) => {
 };
 
 
-//CANCEL BOOKING
-exports.cancelBooking = async (req, res) => {
+//DELETE BOOKING
+exports.deleteBooking = async (req, res) => {
     try{
         const db = getDB();
         let bookingObjectId;
@@ -179,30 +179,21 @@ exports.cancelBooking = async (req, res) => {
         if(booking.status === 'completed'){
             return res.status(400).json({
                 success: false,
-                message: 'Completed bookings cannot be cancelled.'
+                message: 'Completed bookings cannot be deleted.'
             });
         }
 
-        if(booking.status === 'cancelled'){
-            return res.status(400).json({
-                success: false,
-                message: 'Booking has already been cancelled.'
-            });
-        }
-
-        const updated = await db.collection('bookings').findOneAndUpdate(
-            {_id: bookingObjectId},
-            {$set: {status: 'cancelled', collectorId: null, collectorName: null}},
-            {returnDocument: 'after'}
+        const deleted = await db.collection('bookings').findOneAndDelete(
+            {_id: bookingObjectId}
         );
 
         res.json({
             success: true,
-            message: 'Booking cancelled successfully.',
-            booking: updated
+            message: 'Booking deleted successfully.',
+            booking: deleted
         });
     }catch(error){
-        console.error('Error cancelling booking:', error);
+        console.error('Error deleting booking:', error);
         res.status(500).json({
             success: false,
             message: 'Server error',

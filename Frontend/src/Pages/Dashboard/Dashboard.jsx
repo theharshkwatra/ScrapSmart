@@ -113,11 +113,11 @@ const Dashboard = () => {
     fetchBookings();
   };
 
-  const handleCancelBooking = async (id) => {
-    if(!window.confirm("Are you sure you want to cancel this booking?")) return;
+  const handleDeleteBooking = async (id) => {
+    if(!window.confirm("Are you sure you want to delete this booking?")) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/bookings/${id}/cancel`, {
-        method: "PUT",
+      const response = await fetch(`http://localhost:5000/api/bookings/${id}`, {
+        method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -125,11 +125,11 @@ const Dashboard = () => {
         fetchFilteredBookings();
         fetchStats();
       } else {
-        alert(data.message || "Failed to cancel booking.");
+        alert(data.message || "Failed to delete booking.");
       }
     } catch (error) {
-      console.error("Error cancelling booking:", error);
-      alert("An error occurred while cancelling the booking.");
+      console.error("Error deleting booking:", error);
+      alert("An error occurred while deleting the booking.");
     }
   };
 
@@ -340,7 +340,7 @@ const Dashboard = () => {
                           {booking.status}
                         </span>
                         {(booking.status !== "cancelled" && booking.status !== "completed") && (
-                          <button className="cancel-btn" onClick={() => handleCancelBooking(booking._id)}>Cancel</button>
+                          <button className="cancel-btn" onClick={() => handleDeleteBooking(booking._id)}>Delete</button>
                         )}
                       </div>
                     </div>
