@@ -192,7 +192,7 @@ exports.cancelBooking = async (req, res) => {
 
         const updated = await db.collection('bookings').findOneAndUpdate(
             {_id: bookingObjectId},
-            {$set: {status: 'cancelled'}},
+            {$set: {status: 'cancelled', collectorId: null, collectorName: null}},
             {returnDocument: 'after'}
         );
 

@@ -11,7 +11,7 @@ import SchedulePickup from "./Pages/SchedulePickup/SchedulePickup";
 import OrderSummary from "./Pages/OrderSummary/OrderSummary";
 import BookingConfirmed from "./Pages/BookingConfirmed/BookingConfirmed";
 import AcceptConfirmed from "./Pages/AcceptConfirmed/AcceptConfirmed";
-import MyBookings from "./Pages/MyBookings/MyBookings";
+
 import "./App.css";
 
 import Navbar from "./components/Navbar/Navbar";
@@ -33,7 +33,7 @@ function App() {
           <Route path="/order-summary" element={<OrderSummary />} />
           <Route path="/booking-confirmed" element={<BookingConfirmed />} />
           <Route path="/accept-confirmed" element={<AcceptConfirmed />} />
-          <Route path="/my-bookings" element={<MyBookings />} />
+
         </Routes>
       </div>
     </BrowserRouter>

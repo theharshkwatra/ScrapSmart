@@ -81,6 +81,7 @@ const Navbar = () => {
                   <Button label="Dashboard" active={isActive} />
                 )}
               </NavLink>
+
               <button className="logout-btn" onClick={handleLogout}>
                 <FaSignOutAlt />
                 <span>Logout</span>
