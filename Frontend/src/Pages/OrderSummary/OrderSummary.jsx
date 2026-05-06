@@ -35,11 +35,7 @@ const OrderSummary = () => {
     const token = userData.token;
 
     const bookingData = {
-      address: {
-        street: address.trim(),
-        city: "Default City", 
-        pincode: "000000"
-      },
+      address: address.trim(),
       scheduledDate: selectedDate,
       timeSlot: selectedTime,
       scrapTypes: Object.keys(materials),

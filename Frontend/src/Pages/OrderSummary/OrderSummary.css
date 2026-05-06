@@ -159,7 +159,8 @@
 
 .date-selector input,
 .time-selector input,
-.time-selector select {
+.time-selector select,
+.address-selector input {
   padding: 12px 16px;
   border: 2px solid #e5e7eb;
   border-radius: 8px;
@@ -171,7 +172,8 @@
 
 .date-selector input:focus,
 .time-selector input:focus,
-.time-selector select:focus {
+.time-selector select:focus,
+.address-selector input:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);

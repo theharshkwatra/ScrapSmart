@@ -14,10 +14,15 @@ exports.createBooking = async (req, res) => {
             });
         }
 
-        if(!address.street || !address.city || !address.pincode){
+        if(typeof address === 'object' && !address.street){
             return res.status(400).json({
                 success: false,
-                message: 'Address must include street, city and pincode'
+                message: 'Address is required'
+            });
+        }else if(!address){
+            return res.status(400).json({
+                success: false,
+                message: 'Address is required'
             });
         }
 
@@ -48,11 +53,7 @@ exports.createBooking = async (req, res) => {
         const db = getDB();
         const newBooking = {
             userId: req.user._id,
-            address: {
-                street: address.street,
-                city: address.city,
-                pincode: address.pincode
-            },
+            address: typeof address === 'object' ? address.street : address,
             scheduledDate: new Date(scheduledDate),
             timeSlot,
             scrapTypes,
@@ -219,9 +220,7 @@ exports.updateBooking = async (req, res) => {
 
         const updateFields = {};
         if(address) {
-            if(address.street) updateFields['address.street'] = address.street;
-            if(address.city) updateFields['address.city'] = address.city;
-            if(address.pincode) updateFields['address.pincode'] = address.pincode;
+            updateFields.address = typeof address === 'object' ? address.street : address;
         }
         if(scheduledDate) updateFields.scheduledDate = new Date(scheduledDate);
         if(timeSlot) updateFields.timeSlot = timeSlot;
@@ -418,8 +417,8 @@ exports.searchBookings = async (req, res) => {
 
         const bookings = await db.collection('bookings').find({
             $or: [
+                {address: {$regex: q, $options: 'i'}},
                 {'address.street': {$regex: q, $options: 'i'}},
-                {'address.city': {$regex: q, $options: 'i'}},
                 {scrapTypes: {$regex: q, $options: 'i'}}
             ],
             userId: req.user._id

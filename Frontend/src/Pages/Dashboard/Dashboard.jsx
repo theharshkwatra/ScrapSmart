@@ -356,7 +356,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="booking-address">
-                      <p>{booking.address?.street}, {booking.address?.city} - {booking.address?.pincode}</p>
+                      <p>{typeof booking.address === 'object' ? booking.address.street : booking.address}</p>
                     </div>
                     <div className="booking-materials-wrapper">
                       <div className="booking-materials">
