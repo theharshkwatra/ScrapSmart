@@ -1,13 +1,15 @@
 const { MongoClient } = require('mongodb');
-const uri = process.env.MONGO_URI;
-const client = new MongoClient(uri);
 
+const uri = process.env.MONGO_URI;
+
+const client = new MongoClient(uri);
 let db;
 
 const connectDB = async () => {
   try {
     await client.connect();
-    db = client.db('scrapsmart');
+    const dbName = process.env.MONGO_DB_NAME || 'scrapsmart';
+    db = client.db(dbName);
     
     // Add INDEXING
     try {
@@ -18,7 +20,7 @@ const connectDB = async () => {
       console.log('Indexes already exist or could not be created:', indexErr.message);
     }
 
-    console.log('Connected to MongoDB');
+    console.log(`Connected to MongoDB database: ${dbName}`);
   } catch (error) {
     console.error('MongoDB connection failed:', error.message);
     process.exit(1);

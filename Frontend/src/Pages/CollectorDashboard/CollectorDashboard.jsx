@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CollectorDashboard.css";
@@ -34,7 +35,7 @@ const CollectorDashboard = () => {
   const loadBookings = () => {
     const token = JSON.parse(localStorage.getItem("user") || "{}").token;
 
-    fetch("http://localhost:5000/api/bookings/available", {
+    fetch(`${API_BASE_URL}/api/bookings/available`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(response => response.json())
@@ -46,7 +47,7 @@ const CollectorDashboard = () => {
     .catch(error => console.error("Error fetching available bookings:", error));
 
     // Load assigned
-    fetch("http://localhost:5000/api/bookings/my-assigned", {
+    fetch(`${API_BASE_URL}/api/bookings/my-assigned`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(response => response.json())
@@ -60,7 +61,7 @@ const CollectorDashboard = () => {
 
   const handleAccept = (bookingId) => {
     const token = JSON.parse(localStorage.getItem("user") || "{}").token;
-    fetch(`http://localhost:5000/api/bookings/${bookingId}/accept`, {
+    fetch(`${API_BASE_URL}/api/bookings/${bookingId}/accept`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -123,7 +124,7 @@ const CollectorDashboard = () => {
 
   const handleComplete = (bookingId) => {
     const token = JSON.parse(localStorage.getItem("user") || "{}").token;
-    fetch(`http://localhost:5000/api/bookings/${bookingId}/complete`, {
+    fetch(`${API_BASE_URL}/api/bookings/${bookingId}/complete`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${token}` }
     })

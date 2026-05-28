@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config";
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
@@ -25,7 +26,7 @@ const Dashboard = () => {
   const fetchBookings = useCallback(async () => {
     if (!token) return;
     try {
-      const response = await fetch("http://localhost:5000/api/bookings", {
+      const response = await fetch(`${API_BASE_URL}/api/bookings`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -57,7 +58,7 @@ const Dashboard = () => {
   const fetchStats = useCallback(async () => {
     if (!token) return;
     try {
-      const response = await fetch("http://localhost:5000/api/bookings/stats", {
+      const response = await fetch(`${API_BASE_URL}/api/bookings/stats`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -91,7 +92,7 @@ const Dashboard = () => {
       if (dateFilter.startDate) params.append("startDate", dateFilter.startDate);
       if (dateFilter.endDate) params.append("endDate", dateFilter.endDate);
 
-      const response = await fetch(`http://localhost:5000/api/bookings/date-range?${params}`, {
+      const response = await fetch(`${API_BASE_URL}/api/bookings/date-range?${params}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -116,7 +117,7 @@ const Dashboard = () => {
   const handleDeleteBooking = async (id) => {
     if(!window.confirm("Are you sure you want to delete this booking?")) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/bookings/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/bookings/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -137,7 +138,7 @@ const Dashboard = () => {
     if (!scrapType || !scrapType.trim()) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/bookings/${id}/scrap/add`, {
+      const response = await fetch(`${API_BASE_URL}/api/bookings/${id}/scrap/add`, {
         method: "PUT",
         headers: { 
           "Content-Type": "application/json",
@@ -160,7 +161,7 @@ const Dashboard = () => {
   const handleRemoveScrapType = async (id, scrapType) => {
     if(!window.confirm(`Remove ${scrapType} from this booking?`)) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/bookings/${id}/scrap/remove`, {
+      const response = await fetch(`${API_BASE_URL}/api/bookings/${id}/scrap/remove`, {
         method: "PUT",
         headers: { 
           "Content-Type": "application/json",

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Auth.css";
@@ -59,7 +60,7 @@ const Auth = () => {
         };
 
     try {
-      const response = await fetch('http://localhost:5000' + endpoint, {
+      const response = await fetch(API_BASE_URL + endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./OrderSummary.css";
@@ -42,7 +43,7 @@ const OrderSummary = () => {
       estimatedWeight: Object.values(quantities).reduce((a, b) => a + b, 0)
     };
 
-    fetch('http://localhost:5000/api/bookings', {
+    fetch(`${API_BASE_URL}/api/bookings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
