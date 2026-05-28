@@ -1,7 +1,7 @@
 import React from 'react';
 import './HowItWorks.css';
 import { FaTruck, FaMoneyBillWave, FaCheckCircle } from 'react-icons/fa';
-import earning from '../../assets/earning.png';
+import earning from '../../assets/Earning.png';
 import Footer from '../../components/Footer/Footer';
 
 
